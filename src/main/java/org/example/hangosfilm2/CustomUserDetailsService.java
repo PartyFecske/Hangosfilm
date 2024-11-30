@@ -1,3 +1,4 @@
+
 package org.example.hangosfilm2;
 
 import java.util.Collection;
@@ -13,14 +14,13 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional
 public class CustomUserDetailsService implements UserDetailsService {
-    @Autowired
-    private UserRepository userRepo;
+    @Autowired private UserRepository userRepo;
 
     @Override
     public UserDetails loadUserByUsername(String userName) throws UsernameNotFoundException {
-        User user = userRepo.findByName(userName).orElseThrow(() -> new UsernameNotFoundException("Email " + userName + " not found"));
+        User user = userRepo.findByName(userName).orElseThrow(() -> new UsernameNotFoundException("User " + userName + " not found"));
 
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), getAuthorities(user));
+        return new org.springframework.security.core.userdetails.User(user.getName(), user.getPassword(), getAuthorities(user));
     }
 
     private static Collection<? extends GrantedAuthority> getAuthorities(User user) {

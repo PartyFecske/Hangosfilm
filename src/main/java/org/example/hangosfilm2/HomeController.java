@@ -1,3 +1,4 @@
+
 package org.example.hangosfilm2;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,7 @@ public class HomeController {
         model.addAttribute("reg", new User());
         return "regisztral";
     }
-    @Autowired
-    private UserRepository userRepo;
+    @Autowired private UserRepository userRepo;
     @PostMapping("/regisztral_feldolgoz")
     public String Regisztráció(@ModelAttribute User user, Model model) {
         for(User felhasznalo2: userRepo.findAll())
@@ -43,9 +43,5 @@ public class HomeController {
         userRepo.save(user);
         model.addAttribute("id", user.getId());
         return "regjo";
-    }
-    @GetMapping("/filmek")
-    public String filmek() {
-        return "filmek";
     }
 }

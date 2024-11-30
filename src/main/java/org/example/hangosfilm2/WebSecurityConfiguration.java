@@ -1,3 +1,4 @@
+
 package org.example.hangosfilm2;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +30,7 @@ public class WebSecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/csrf","/api/**","/contact","/login", "/h2-console/**", "/static/**", "/css/**", "/js/**", "/images/**", "/register").permitAll()
+                        .requestMatchers("/","/csrf","/api/**","/contact","/login", "/h2-console/**", "/static/**", "/css/**", "/js/**", "/images/**","/regisztral","/regisztral_feldolgoz").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.defaultSuccessUrl("/home").permitAll()).logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
