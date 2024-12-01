@@ -12,26 +12,30 @@ public class FilmController {
     @Autowired private SzemelyRepo szemelyRepo;
     @GetMapping("/filmek")
     public String Fooldal(Model model) {
-        String str = A();
+        String[] str = A();
         model.addAttribute("str", str);
         return "filmek";
     }
-    String A(){
-        String str="";
+    String[] A(){
+        String str1="";
+        String str2="";
+        String str3="";
         for(Feladat feladat : feladatRepo.findAll()){
-            str+= feladat.getId()+"; "+ feladat.getFilmid()+"; "+ feladat.getSzemelyid()+"; "+feladat.getMegnevezes();
-            str+="<br>";
+            str1+= feladat.getId()+"; "+ feladat.getFilmid()+"; "+ feladat.getSzemelyid()+"; "+feladat.getMegnevezes();
+            str1+="<br>";
         }
-        str+="<br>";
+        //str+="<br>";
         for(Film film : filmRepo.findAll()){
-            str+= film.getId()+"; "+film.getCím()+"; "+ film.getGyártás()+"; "+ film.getHossz()+"; "+ film.getBemutató()+"; "+ film.getYoutube();
-            str+="<br>";
+            str2+= film.getId()+"; "+film.getCím()+"; "+ film.getGyártás()+"; "+ film.getHossz()+"; "+ film.getBemutató()+"; "+ film.getYoutube();
+            str2+="<br>";
         }
-        str+="<br>";
+        //str+="<br>";
         for(Szemely szemely : szemelyRepo.findAll()){
-            str+= szemely.getId()+"; "+ szemely.getNév()+"; "+ szemely.getNem();
-            str+="<br>";
+            str3+= szemely.getId()+"; "+ szemely.getNév()+"; "+ szemely.getNem();
+            str3+="<br>";
         }
+        String[] str={str1, str2, str3};
+        System.out.println(str.length);
         return str;
     }
 }

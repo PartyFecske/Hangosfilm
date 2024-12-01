@@ -3,14 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <title>Filmek</title>
-
+    <style>
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr); /* 3 columns, each 1 fraction of available space */
+            gap: 10px; /* Space between grid items */
+            padding: 10px;
+        }
+        .grid-item {
+            background-color: #f4f4f4;
+            padding: 20px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+    </style>
 </head>
 <body>
 <div th:insert="menu">
 </div>
-<div>
-    <button th:action="@{/filmek_show}">Show</button>
-    <p th:utext="${str}"></p>
+<div class="grid-container">
+    <div class="grid-item">Feladat</div>
+    <div class="grid-item">Film</div>
+    <div class="grid-item">Személy</div>
+</div>
+<div class="grid-container">
+    <div class="grid-item"><p th:utext="${str[0]}"></p></div>
+    <div class="grid-item"><p th:utext="${str[1]}"></p></div>
+    <div class="grid-item"><p th:utext="${str[2]}"></p></div>
 </div>
 </body>
 </html>

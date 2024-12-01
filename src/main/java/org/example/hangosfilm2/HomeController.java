@@ -7,8 +7,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.util.ArrayList;
-import java.util.List;
+
 @Controller
 public class HomeController {
     @GetMapping("/")
@@ -42,5 +41,25 @@ public class HomeController {
         userRepo.save(user);
         model.addAttribute("id", user.getId());
         return "regjo";
+    }
+    @GetMapping("/kapcsolat")
+    public String kapcsolatForm(Model model) {
+        model.addAttribute("kapcs", new Kapcsolat());
+        return "kapcsolat";
+    }
+    @Autowired private KapcsolatRepository kapcsRepo;
+    @PostMapping("/kapcsolat_feldolgoz")
+    public String Kapcsolat(@ModelAttribute Kapcsolat kapcsolat, Model model) {
+        int db=0;
+        for (User felhasznalo3: userRepo.findAll())
+            if (felhasznalo3.getEmail().equals(kapcsolat.getEmail()))
+                db++;
+        if (db==0) {
+            model.addAttribute("üzenet", "A megadott email nem található");
+            return "kapcs_hiba";
+        }
+        kapcsRepo.save(kapcsolat);
+        model.addAttribute("id", kapcsolat.getId());
+        return "kapcs_jo";
     }
 }

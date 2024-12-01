@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org" lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Kapcsolat</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-
+<div th:insert="menu"></div>
+<h3>Itt küldhet üzenetet a rendszergazdának</h3>
+<form action="#" th:action="@{/kapcsolat_feldolgoz}" th:object="${kapcs}" method="post">
+    <fieldset>
+        <legend>Kapcsolat</legend>
+        <p><input type="text" th:field="*{name}" placeholder="Név" required/></p>
+        <p><input type="text" th:field="*{email}" placeholder="Email" required/></p>
+        <p><input type="text" th:field="*{message}" placeholder="Üzenet" required/></p>
+        <p><input type="submit" value="Küldés" /></p>
+    </fieldset>
+</form>
 </body>
 </html>

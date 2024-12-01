@@ -29,7 +29,7 @@ public class WebSecurityConfiguration {
         http
                 .csrf(csrf -> csrf.disable())
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers("/","/csrf","/api/**","/contact","/login", "/h2-console/**", "/static/**", "/css/**", "/js/**", "/images/**","/regisztral","/regisztral_feldolgoz").permitAll()
+                        .requestMatchers("/","/csrf","/api/**","/contact","/login", "/h2-console/**", "/static/**", "/css/**", "/js/**", "/images/**","/regisztral","/regisztral_feldolgoz","/kapcsolat","/kapcsolat_feldolgoz").permitAll()
                         .anyRequest().authenticated())
                 .formLogin(form -> form.defaultSuccessUrl("/home").permitAll()).logout(logout -> logout
                         .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
