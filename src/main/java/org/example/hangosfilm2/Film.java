@@ -19,7 +19,7 @@ public class Film {
     @Column(name = "hossz")
     private int hossz;
     @Column(name = "bemutato")
-    private Date bemutató;
+    private String bemutató;
     @Column(name = "youtube")
     private int youtube;
 
@@ -55,11 +55,11 @@ public class Film {
         this.hossz = hossz;
     }
 
-    public Date getBemutató() {
+    public String getBemutató() {
         return bemutató;
     }
 
-    public void setBemutató(Date bemutató) {
+    public void setBemutató(String bemutató) {
         this.bemutató = bemutató;
     }
 
